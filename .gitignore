@@ -1,0 +1,14 @@
+# Backend Laravel
+backend/vendor/
+backend/.env
+backend/.phpunit.result.cache
+
+# Frontend React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Système / éditeurs
+.DS_Store
+.idea/
+.vscode/

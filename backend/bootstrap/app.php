@@ -19,4 +19,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (\Illuminate\Http\Request $request) => $request->is('api/*')
         );
+                 // Erreurs HTTP de l'API (403, 404…) : message court, sans trace technique
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $e, \Illuminate\Http\Request $request) {
+            if ($request->is('api/*')) {
+                $message = $e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                    ? 'Ressource introuvable.'
+                    : ($e->getMessage() ?: 'Erreur.');
+
+                return response()->json(['message' => $message], $e->getStatusCode());
+            }
+        });
     })->create();

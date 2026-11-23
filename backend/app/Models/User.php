@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -29,4 +31,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+        /** Un responsable agricole possède plusieurs parcelles. */
+        public function parcelles(): HasMany
+        {
+            return $this->hasMany(Parcelle::class);
+        }
+    
+        /** Toutes ses cultures, en passant par ses parcelles. */
+        public function cultures(): HasManyThrough
+        {
+            return $this->hasManyThrough(Culture::class, Parcelle::class);
+        }
 }

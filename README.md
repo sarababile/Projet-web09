@@ -25,3 +25,15 @@ sudo port install php84 php84-mbstring php84-openssl php84-intl php84-mysql php8
 sudo port select --set php php84
 sudo port install mysql8-server
 ```
+
+## Base de données
+Démarrer MySQL (une seule fois, il redémarre ensuite automatiquement) :
+```bash
+sudo port load mysql8-server
+```
+Création de la base et de l'utilisateur :
+```sql
+CREATE DATABASE gestion_agricole CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'agri'@'localhost' IDENTIFIED BY 'agri';
+GRANT ALL PRIVILEGES ON gestion_agricole.* TO 'agri'@'localhost';
+```

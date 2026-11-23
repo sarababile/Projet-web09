@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Api\IntrantController;
 use App\Http\Controllers\Api\CultureController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ParcelleController;
@@ -14,4 +15,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'me']);
     Route::apiResource('parcelles', ParcelleController::class);
     Route::apiResource('cultures', CultureController::class);
+    Route::apiResource('intrants', IntrantController::class);
 });

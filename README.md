@@ -37,3 +37,10 @@ CREATE DATABASE gestion_agricole CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_c
 CREATE USER 'agri'@'localhost' IDENTIFIED BY 'agri';
 GRANT ALL PRIVILEGES ON gestion_agricole.* TO 'agri'@'localhost';
 ```
+
+## Données de démonstration
+```bash
+cd backend
+php artisan migrate:fresh --seed
+```
+Compte de démonstration : **demo@ferme.ma** / **password**

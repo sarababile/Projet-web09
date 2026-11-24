@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/AppLayout';
 import { GuestRoute, PrivateRoute } from './components/RouteGuards';
 import EnConstruction from './pages/EnConstruction';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -18,7 +18,7 @@ export default function App() {
       {/* Pages réservées aux utilisateurs connectés, dans la structure avec barre latérale */}
       <Route element={<PrivateRoute />}>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/parcelles" element={<EnConstruction titre="Parcelles" />} />
           <Route path="/cultures" element={<EnConstruction titre="Cultures" />} />
           <Route path="/intrants" element={<EnConstruction titre="Intrants" />} />

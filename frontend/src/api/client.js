@@ -25,8 +25,8 @@ export const session = {
 
 /** Instance Axios partagée par toute l'application. */
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: { Accept: 'application/json' },
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+    headers: { Accept: 'application/json' },
 });
 
 // Ajoute le jeton à chaque requête

@@ -131,3 +131,33 @@
   .fade-up { animation: fadeUp 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
   @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } }
+  /* ---------- Écrans de connexion / inscription ---------- */
+.auth { min-height: 100vh; display: flex; flex-wrap: wrap; background: var(--surface); }
+.auth-brand {
+  flex: 1 1 520px; background: var(--forest); color: var(--pistachio);
+  display: flex; flex-direction: column; min-height: 560px;
+}
+.auth-brand-logo { display: flex; align-items: center; gap: 12px; padding: 48px 56px 0; }
+.auth-brand-text { padding: 64px 56px 40px; max-width: 580px; display: flex; flex-direction: column; gap: 20px; }
+.auth-kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.auth-title { font-size: 3.5rem; color: var(--pistachio); }
+.auth-lead { font-size: 18px; line-height: 1.55; color: var(--olive); }
+.auth-modules { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.auth-modules li {
+  padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
+  border: 1px solid rgba(201, 168, 106, 0.45); color: var(--linden);
+}
+.auth-bands { margin-top: auto; display: flex; flex-direction: column; }
+.auth-bands div { height: 22px; }
+.auth-form-side { flex: 1 1 480px; display: flex; align-items: center; justify-content: center; padding: 48px 32px; }
+.auth-form { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px; }
+.auth-heading { font-size: 2.5rem; margin-bottom: 6px; }
+.auth-sub { color: var(--muted); font-size: 16px; margin-top: 4px; }
+.auth-divider { display: flex; align-items: center; gap: 14px; color: var(--muted); font-weight: 600; font-size: 14px; }
+.auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.auth-footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 8px; }
+.auth-footer a { font-weight: 800; text-decoration: none; }
+.checkbox { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; cursor: pointer; }
+.checkbox input { width: 20px; height: 20px; accent-color: var(--pine); margin: 0; }
+.alert { padding: 14px 18px; border-radius: var(--radius-sm); font-weight: 600; font-size: 14px; }
+.alert-error { background: #fdecea; color: var(--danger); }

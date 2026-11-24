@@ -1,26 +1,14 @@
-import { LogOut } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import Button from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
 
+/** Accueil temporaire — remplacé par le tableau de bord à l'étape 9B. */
 export default function Home() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const onLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
-
+  const { user } = useAuth();
   return (
-    <main style={{ maxWidth: 720, margin: '96px auto', padding: 24 }}>
-      <div className="card fade-up" style={{ display: 'grid', gap: 16 }}>
-        <h1>Bonjour, {user.name}</h1>
-        <p className="muted">Vous êtes connecté(e) avec {user.email}. Le tableau de bord arrive à l'étape 9.</p>
-        <Button variant="ghost" icon={LogOut} onClick={onLogout} style={{ justifySelf: 'start' }}>
-          Se déconnecter
-        </Button>
+    <header className="page-header">
+      <div>
+        <p className="page-kicker">Tableau de bord</p>
+        <h1>Bonjour, {user.name.split(' ')[0]}</h1>
       </div>
-    </main>
+    </header>
   );
 }

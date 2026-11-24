@@ -1,0 +1,133 @@
+/* =========================================================
+   AgriGestion — Design system (palette « forêt »)
+   ========================================================= */
+   :root {
+    /* Palette verte, du plus sombre au plus clair */
+    --forest: #0d1f16;      /* Deep Forest — barre latérale */
+    --pine: #14381f;        /* Pine Shade — boutons principaux, cartes sombres */
+    --emerald: #1c4d2e;     /* Emerald Depth */
+    --moss: #2e6b3f;        /* Moss Green */
+    --botanical: #3f8451;   /* Botanical Green */
+    --fern: #5aa06d;        /* Soft Fern — graphiques */
+    --sage: #7bae8a;        /* Sage Leaf */
+    --olive: #a1c29f;       /* Olive Mist — texte clair sur fond sombre */
+    --linden: #c3ddba;      /* Linden Green — élément actif */
+    --pistachio: #e6f2e1;   /* Pistachio Cream — fonds doux */
+    --gold: #c9a86a;        /* Or — accent, uniquement sur fond sombre */
+  
+    /* Rôles */
+    --bg: #f3f7f0;
+    --surface: #ffffff;
+    --line: #dce7d6;
+    --line-soft: #eef3ea;
+    --text: #0d1f16;
+    --text-2: #2e3b32;
+    --muted: #4e6355;
+    --danger: #b42318;
+  
+    --radius-sm: 16px;
+    --radius: 28px;
+    --radius-lg: 32px;
+    --shadow-btn: 0 14px 28px -14px rgba(13, 31, 22, 0.6);
+    --font: 'Urbanist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+  }
+  
+  * { box-sizing: border-box; }
+  html, body, #root { min-height: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-family: var(--font-serif); font-weight: 600; font-size: 2.5rem; letter-spacing: -0.02em; line-height: 1.1; }
+  h2 { font-size: 1.25rem; font-weight: 800; }
+  a { color: var(--emerald); }
+  a:hover { color: var(--forest); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; }
+  .muted { color: var(--muted); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  
+  /* ---------- Boutons (pilules) ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 52px; padding: 0 24px; border-radius: 999px; border: 1.5px solid transparent;
+    font-weight: 700; font-size: 0.95rem; cursor: pointer; white-space: nowrap; text-decoration: none;
+    transition: transform 0.12s, background 0.2s, box-shadow 0.2s, opacity 0.2s;
+  }
+  .btn:active:not(:disabled) { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn:focus-visible { outline: 3px solid var(--fern); outline-offset: 2px; }
+  .btn-primary { background: var(--pine); color: #fff; box-shadow: var(--shadow-btn); }
+  .btn-primary:hover:not(:disabled) { background: var(--emerald); color: #fff; }
+  .btn-light { background: var(--linden); color: var(--forest); }
+  .btn-light:hover:not(:disabled) { background: var(--pistachio); color: var(--forest); }
+  .btn-ghost { background: var(--surface); border-color: var(--line); color: var(--text); }
+  .btn-ghost:hover:not(:disabled) { background: var(--bg); color: var(--text); }
+  .btn-soft { background: var(--bg); color: var(--text); }
+  .btn-soft:hover:not(:disabled) { background: var(--pistachio); color: var(--text); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-sm { height: 44px; padding: 0 18px; font-size: 0.875rem; }
+  .btn-lg { height: 58px; padding: 0 28px; font-size: 1rem; }
+  .btn-block { width: 100%; }
+  .btn-icon { width: 44px; height: 44px; padding: 0; }
+  .spinner {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2.5px solid currentColor; border-right-color: transparent;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  /* ---------- Champs de formulaire ---------- */
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field-label { font-size: 0.875rem; font-weight: 700; }
+  .field-label .req { color: var(--danger); }
+  .input {
+    display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 18px;
+    background: var(--bg); border: 1.5px solid var(--bg); border-radius: var(--radius-sm);
+    color: var(--muted); transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .input:focus-within {
+    background: var(--surface); border-color: var(--pine); color: var(--text);
+    box-shadow: 0 0 0 4px var(--pistachio);
+  }
+  .input.has-value { color: var(--text); }
+  .input.has-error { border-color: var(--danger); background: var(--surface); }
+  .input input, .input select, .input textarea {
+    flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+    padding: 14px 0; font-size: 1rem; font-weight: 600; color: var(--text);
+  }
+  .input input::placeholder, .input textarea::placeholder { color: var(--muted); font-weight: 500; }
+  .input textarea { resize: vertical; min-height: 96px; }
+  .input select { cursor: pointer; }
+  .input-toggle {
+    border: 0; background: none; padding: 0; width: 44px; height: 44px; margin-right: -12px;
+    display: grid; place-items: center; cursor: pointer; color: inherit;
+  }
+  .field-error { font-size: 0.8rem; color: var(--danger); font-weight: 700; }
+  
+  /* ---------- Cartes ---------- */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 32px; }
+  .card-dark { background: var(--pine); color: var(--pistachio); border-color: var(--pine); }
+  .card-dark .muted { color: var(--olive); }
+  
+  /* ---------- Badges ---------- */
+  .badge {
+    display: inline-flex; align-items: center; height: 30px; padding: 0 12px;
+    border-radius: 999px; font-size: 0.8rem; font-weight: 700; white-space: nowrap;
+  }
+  .badge-green { background: #e6f2e1; color: #1c4d2e; }
+  .badge-amber { background: #f6ebd3; color: #6e4a0e; }
+  .badge-rose  { background: #f6e1e7; color: #7e2a45; }
+  .badge-blue  { background: #e3ecf3; color: #24435a; }
+  .badge-gray  { background: #eef0ec; color: #3f4a43; }
+  .badge-dark  { background: var(--pine); color: var(--pistachio); }
+  
+  /* ---------- Animation d'apparition ---------- */
+  .fade-up { animation: fadeUp 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
+  @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } }

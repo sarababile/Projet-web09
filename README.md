@@ -5,7 +5,6 @@ Application web de gestion d'une exploitation agricole : **parcelles**, **cultur
 > Projet du module **Programmation Web Dynamique** — Filière IL, Faculté des Sciences d'Agadir (2026)
 > Réalisé par **Sara BABILE**
 
-![Tableau de bord](docs/captures/03-tableau-de-bord.png)
 
 ---
 
@@ -20,9 +19,8 @@ Application web de gestion d'une exploitation agricole : **parcelles**, **cultur
 7. [Compte de démonstration](#compte-de-démonstration)
 8. [API REST](#api-rest)
 9. [Tests](#tests)
-10. [Captures d'écran](#captures-décran)
-11. [Diagrammes UML](#diagrammes-uml)
-12. [Problèmes rencontrés et solutions](#problèmes-rencontrés-et-solutions)
+10. [Diagrammes UML](#diagrammes-uml)
+11. [Problèmes rencontrés et solutions](#problèmes-rencontrés-et-solutions)
 
 ---
 
@@ -87,7 +85,6 @@ Projet-web09/
 │       ├── pages/                 # Une page par écran
 │       └── utils/format.js        # Formatage (dates, poids, DH)
 ├── docs/
-│   ├── captures/                  # Captures d'écran
 │   └── uml/                       # Diagrammes UML
 └── README.md
 ```
@@ -234,28 +231,6 @@ cd ../frontend
 npm run lint           # vérification du code React
 npm run build          # version de production
 ```
-
-## Captures d'écran
-
-| Connexion | Inscription |
-|---|---|
-| ![Connexion](docs/captures/01-connexion.png) | ![Inscription](docs/captures/02-inscription.png) |
-
-| Tableau de bord | Parcelles |
-|---|---|
-| ![Tableau de bord](docs/captures/03-tableau-de-bord.png) | ![Parcelles](docs/captures/04-parcelles.png) |
-
-| Formulaire et validation | Cultures |
-|---|---|
-| ![Validation](docs/captures/05-validation.png) | ![Cultures](docs/captures/06-cultures.png) |
-
-| Intrants | Récoltes |
-|---|---|
-| ![Intrants](docs/captures/07-intrants.png) | ![Récoltes](docs/captures/08-recoltes.png) |
-
-| Rendements |
-|---|
-| ![Rendements](docs/captures/09-rendements.png) |
 
 ## Diagrammes UML
 

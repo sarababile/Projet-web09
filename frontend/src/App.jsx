@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Parcelles from './pages/Parcelles';
+import Cultures from './pages/Cultures';
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/parcelles" element={<Parcelles />} />
-          <Route path="/cultures" element={<EnConstruction titre="Cultures" />} />
+          <Route path="/cultures" element={<Cultures />} />
           <Route path="/intrants" element={<EnConstruction titre="Intrants" />} />
           <Route path="/recoltes" element={<EnConstruction titre="Récoltes" />} />
           <Route path="/rendements" element={<EnConstruction titre="Rendements" />} />

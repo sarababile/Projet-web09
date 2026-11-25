@@ -271,9 +271,9 @@
 @media (prefers-reduced-motion: reduce) { .overlay, .panel { animation: none; } }
 
 /* ---------- Cartes de parcelles ---------- */
-.grid-cards { display: flex; flex-wrap: wrap; gap: 24px; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
 .parcel {
-  flex: 1 1 280px; max-width: 420px; background: var(--surface); border: 1px solid var(--line);
+  background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -289,3 +289,21 @@
 .parcel-surface span { font-family: var(--font); font-size: 14px; font-weight: 700; color: var(--muted); margin-left: 4px; }
 .parcel-actions { margin-top: auto; display: flex; gap: 8px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
 .parcel-actions .btn-soft:first-child { flex: 1; }
+/* ---------- Filtres ---------- */
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.select-pill { position: relative; }
+.select-pill select {
+  appearance: none; height: 48px; padding: 0 44px 0 20px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--line); background: var(--surface); font-weight: 700; font-size: 14px; color: var(--text);
+}
+.select-pill::after {
+  content: ''; position: absolute; right: 20px; top: 50%; width: 7px; height: 7px; margin-top: -6px;
+  border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); transform: rotate(45deg); pointer-events: none;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  height: 44px; padding: 0 18px; border-radius: 999px; border: 2px solid var(--pine);
+  background: var(--surface); color: var(--pine); font-weight: 700; font-size: 14px; cursor: pointer;
+}
+.chip[aria-pressed='true'] { background: var(--pine); color: #fff; }
+.row-actions { display: flex; gap: 6px; justify-content: flex-end; }

@@ -42,7 +42,7 @@ export default function Register() {
 
   return (
     <AuthLayout>
-      <form onSubmit={onSubmit} style={{ display: 'contents' }}>
+      <form noValidate onSubmit={onSubmit} style={{ display: 'contents' }}>
         <div>
           <h1 className="auth-heading">Créer un compte</h1>
           <p className="auth-sub">Quelques secondes suffisent pour démarrer.</p>

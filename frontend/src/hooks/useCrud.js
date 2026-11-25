@@ -11,20 +11,24 @@ export default function useCrud(endpoint, params = {}) {
   const [error, setError] = useState('');
   const cleParams = JSON.stringify(params); // recharge quand les filtres changent
 
-  const reload = useCallback(async () => {
-    setLoading(true);
-    setError('');
-    try {
-      const { data } = await api.get(endpoint, { params: JSON.parse(cleParams) });
-      setItems(data);
-    } catch (e) {
-      setError(errorMessage(e));
-    } finally {
-      setLoading(false);
-    }
-  }, [endpoint, cleParams]);
+  // Requête de la liste : l'état n'est modifié qu'à l'arrivée de la réponse
+  const charger = useCallback(
+    () => api.get(endpoint, { params: JSON.parse(cleParams) }),
+    [endpoint, cleParams],
+  );
 
-  useEffect(() => { reload(); }, [reload]);
+  const appliquer = (promesse, estActif = () => true) => promesse
+    .then(({ data }) => { if (estActif()) { setItems(data); setError(''); } })
+    .catch((e) => { if (estActif()) setError(errorMessage(e)); })
+    .finally(() => { if (estActif()) setLoading(false); });
+
+  useEffect(() => {
+    let actif = true; // ignore une réponse arrivée après un changement de filtre
+    appliquer(charger(), () => actif);
+    return () => { actif = false; };
+  }, [charger]);
+
+  const reload = () => appliquer(charger());
 
   const create = async (payload) => {
     const { data } = await api.post(endpoint, payload);

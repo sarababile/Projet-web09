@@ -22,8 +22,9 @@ export default function Recoltes() {
   const cultures = useCrud('/cultures');
   const affichees = filtres.qualite ? items.filter((r) => r.qualite === filtres.qualite) : items;
 
-  const [edition, setEdition] = useState(null);
-  const [form, setForm] = useState(VIDE);
+  const ouvertDepuisLien = params.get('nouveau') !== null;
+  const [edition, setEdition] = useState(ouvertDepuisLien ? {} : null);
+  const [form, setForm] = useState(ouvertDepuisLien ? { ...VIDE, date_recolte: aujourdHui() } : VIDE);
   const [erreurs, setErreurs] = useState({});
   const [message, setMessage] = useState('');
   const [saving, setSaving] = useState(false);
@@ -54,12 +55,8 @@ export default function Recoltes() {
 
   // Lien « Nouvelle récolte » du tableau de bord : /recoltes?nouveau=1
   useEffect(() => {
-    if (params.get('nouveau')) {
-      ouvrir();
-      setParams({}, { replace: true });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (ouvertDepuisLien) setParams({}, { replace: true });
+  }, [ouvertDepuisLien, setParams]);
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -202,7 +199,7 @@ export default function Recoltes() {
             </>
           )}
         >
-          <form id="form-recolte" onSubmit={enregistrer} style={{ display: 'contents' }}>
+          <form id="form-recolte" noValidate onSubmit={enregistrer} style={{ display: 'contents' }}>
             {message && <div className="alert alert-error" role="alert">{message}</div>}
             <Field label="Culture récoltée" name="culture_id" required options={optionsCultures}
               value={form.culture_id} onChange={onChange} error={erreurs.culture_id} />

@@ -199,7 +199,7 @@ export default function Intrants() {
             </>
           )}
         >
-          <form id="form-intrant" onSubmit={enregistrer} style={{ display: 'contents' }}>
+          <form id="form-intrant" noValidate onSubmit={enregistrer} style={{ display: 'contents' }}>
             {message && <div className="alert alert-error" role="alert">{message}</div>}
             <Field label="Culture concernée" name="culture_id" required options={optionsCultures}
               value={form.culture_id} onChange={onChange} error={erreurs.culture_id} />

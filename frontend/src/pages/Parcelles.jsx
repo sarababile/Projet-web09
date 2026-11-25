@@ -163,7 +163,7 @@ export default function Parcelles() {
             </>
           )}
         >
-          <form id="form-parcelle" onSubmit={enregistrer} style={{ display: 'contents' }}>
+          <form id="form-parcelle" noValidate onSubmit={enregistrer} style={{ display: 'contents' }}>
             {message && <div className="alert alert-error" role="alert">{message}</div>}
             <Field label="Nom" name="nom" required placeholder="Parcelle Nord"
               value={form.nom} onChange={onChange} error={erreurs.nom} />

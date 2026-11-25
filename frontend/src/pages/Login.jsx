@@ -41,7 +41,7 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <form onSubmit={onSubmit} style={{ display: 'contents' }}>
+      <form noValidate onSubmit={onSubmit} style={{ display: 'contents' }}>
         <div>
           <h1 className="auth-heading">Connexion</h1>
           <p className="auth-sub">Heureux de vous revoir. Entrez vos identifiants.</p>

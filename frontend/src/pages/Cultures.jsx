@@ -172,7 +172,7 @@ export default function Cultures() {
             </>
           )}
         >
-          <form id="form-culture" onSubmit={enregistrer} style={{ display: 'contents' }}>
+          <form id="form-culture" noValidate onSubmit={enregistrer} style={{ display: 'contents' }}>
             {message && <div className="alert alert-error" role="alert">{message}</div>}
             <Field label="Parcelle" name="parcelle_id" required options={optionsParcelles}
               value={form.parcelle_id} onChange={onChange} error={erreurs.parcelle_id} />

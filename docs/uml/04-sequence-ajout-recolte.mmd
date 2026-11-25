@@ -1,0 +1,37 @@
+---
+title: Diagramme de séquence — Ajout d'une récolte
+---
+sequenceDiagram
+    actor A as Agriculteur
+    participant R as Frontend React<br/>(Recoltes.jsx)
+    participant S as Middleware<br/>auth:sanctum
+    participant C as RecolteController<br/>(Laravel)
+    participant DB as Base MySQL
+
+    A->>R: Clique « Nouvelle récolte » et remplit le formulaire
+    R-->>A: Aperçu du rendement (kg/ha) pendant la saisie
+    A->>R: Clique « Enregistrer »
+    R->>S: POST /api/recoltes + Authorization: Bearer {jeton}
+    S->>DB: Vérifie le jeton
+    alt Jeton invalide ou expiré
+        S-->>R: 401 Unauthorized
+        R-->>A: Session effacée, redirection vers /login
+    else Jeton valide
+        S->>C: store(request) avec l'utilisateur connecté
+        activate C
+        C->>DB: La culture appartient-elle à l'utilisateur ? (Culture::ownedBy)
+        DB-->>C: Résultat
+        alt Données invalides
+            C-->>R: 422 {errors} (messages en français)
+            R-->>A: Erreurs affichées sous chaque champ
+        else Données valides
+            C->>DB: INSERT INTO recoltes
+            C-->>R: 201 Created {récolte + rendement}
+            deactivate C
+            R->>S: GET /api/recoltes (rechargement de la liste)
+            S->>C: index()
+            C->>DB: SELECT récoltes de l'utilisateur
+            C-->>R: 200 OK [liste]
+            R-->>A: Panneau fermé, liste mise à jour
+        end
+    end

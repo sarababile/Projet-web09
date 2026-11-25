@@ -1,0 +1,101 @@
+---
+title: Diagramme de classes — AgriGestion
+---
+classDiagram
+    direction TB
+
+    class User {
+        +int id
+        +string name
+        +string email
+        -string password
+        +parcelles() HasMany
+        +cultures() HasManyThrough
+    }
+
+    class Parcelle {
+        +int id
+        +int user_id
+        +string nom
+        +float superficie
+        +string localisation
+        +string type_sol
+        +string description
+        +user() BelongsTo
+        +cultures() HasMany
+    }
+
+    class Culture {
+        +int id
+        +int parcelle_id
+        +string nom
+        +string variete
+        +date date_plantation
+        +date date_recolte_prevue
+        +EtatCulture etat
+        +string notes
+        +parcelle() BelongsTo
+        +intrants() HasMany
+        +recoltes() HasMany
+        +scopeOwnedBy(user)
+    }
+
+    class Intrant {
+        +int id
+        +int culture_id
+        +string nom
+        +TypeIntrant type
+        +float quantite
+        +string unite
+        +date date_utilisation
+        +float cout
+        +string notes
+        +culture() BelongsTo
+        +scopeOwnedBy(user)
+    }
+
+    class Recolte {
+        +int id
+        +int culture_id
+        +date date_recolte
+        +float quantite
+        +Qualite qualite
+        +string notes
+        +culture() BelongsTo
+        +getRendementAttribute() float
+        +scopeOwnedBy(user)
+    }
+
+    class EtatCulture {
+        <<enumeration>>
+        planifiee
+        en_croissance
+        en_floraison
+        prete_a_recolter
+        recoltee
+    }
+
+    class TypeIntrant {
+        <<enumeration>>
+        engrais
+        semence
+        traitement
+        irrigation
+        autre
+    }
+
+    class Qualite {
+        <<enumeration>>
+        excellente
+        bonne
+        moyenne
+        faible
+    }
+
+    User "1" *-- "0..*" Parcelle : possède
+    Parcelle "1" *-- "0..*" Culture : contient
+    Culture "1" *-- "0..*" Intrant : consomme
+    Culture "1" *-- "0..*" Recolte : produit
+    Culture ..> EtatCulture
+    Intrant ..> TypeIntrant
+    Recolte ..> Qualite

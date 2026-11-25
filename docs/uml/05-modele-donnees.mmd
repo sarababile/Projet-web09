@@ -1,0 +1,77 @@
+---
+title: Modèle de données — base gestion_agricole (MySQL)
+---
+erDiagram
+    USERS ||--o{ PARCELLES : "possède"
+    USERS ||--o{ PERSONAL_ACCESS_TOKENS : "s'authentifie avec"
+    PARCELLES ||--o{ CULTURES : "contient"
+    CULTURES ||--o{ INTRANTS : "consomme"
+    CULTURES ||--o{ RECOLTES : "produit"
+
+    USERS {
+        bigint id PK
+        varchar name
+        varchar email UK
+        varchar password "haché (bcrypt)"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PERSONAL_ACCESS_TOKENS {
+        bigint id PK
+        bigint tokenable_id FK "users.id"
+        varchar tokenable_type
+        varchar name
+        varchar token UK "haché (SHA-256)"
+        timestamp last_used_at
+    }
+
+    PARCELLES {
+        bigint id PK
+        bigint user_id FK "ON DELETE CASCADE"
+        varchar nom
+        decimal superficie "10,2 - hectares"
+        varchar localisation
+        varchar type_sol "nullable"
+        text description "nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    CULTURES {
+        bigint id PK
+        bigint parcelle_id FK "ON DELETE CASCADE"
+        varchar nom
+        varchar variete
+        date date_plantation
+        date date_recolte_prevue
+        enum etat "planifiee, en_croissance, en_floraison, prete_a_recolter, recoltee"
+        text notes
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    INTRANTS {
+        bigint id PK
+        bigint culture_id FK "ON DELETE CASCADE"
+        varchar nom
+        enum type "engrais, semence, traitement, irrigation, autre"
+        decimal quantite "10,2"
+        varchar unite "20"
+        date date_utilisation
+        decimal cout "nullable - DH"
+        text notes
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    RECOLTES {
+        bigint id PK
+        bigint culture_id FK "ON DELETE CASCADE"
+        date date_recolte
+        decimal quantite "12,2 - kg"
+        enum qualite "excellente, bonne, moyenne, faible"
+        text notes
+        timestamp created_at
+        timestamp updated_at
+    }

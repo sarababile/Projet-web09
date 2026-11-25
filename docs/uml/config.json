@@ -1,0 +1,7 @@
+{ "theme": "base",
+  "themeVariables": { "fontFamily": "DejaVu Sans, Arial", "fontSize": "15px",
+    "primaryColor": "#E6F2E1", "primaryBorderColor": "#2E6B3F", "primaryTextColor": "#0D1F16",
+    "lineColor": "#14381F", "secondaryColor": "#C3DDBA", "tertiaryColor": "#F3F7F0",
+    "actorBkg": "#E6F2E1", "actorBorder": "#2E6B3F", "noteBkgColor": "#FFF8E6", "noteBorderColor": "#C9A86A",
+    "labelBoxBkgColor": "#C3DDBA", "labelBoxBorderColor": "#2E6B3F", "activationBkgColor": "#C3DDBA" },
+  "sequence": { "mirrorActors": false, "showSequenceNumbers": true } }

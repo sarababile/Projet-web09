@@ -1,0 +1,25 @@
+---
+title: Diagramme de séquence — Connexion
+---
+sequenceDiagram
+    actor A as Agriculteur
+    participant R as Frontend React<br/>(Login.jsx)
+    participant C as AuthController<br/>(Laravel)
+    participant DB as Base MySQL
+
+    A->>R: Saisit l'email et le mot de passe, clique « Se connecter »
+    R->>C: POST /api/login {email, password}
+    activate C
+    C->>C: Valide les données (email, password requis)
+    C->>DB: SELECT * FROM users WHERE email = ?
+    DB-->>C: Utilisateur (ou aucun)
+    alt Email et mot de passe corrects (Hash::check)
+        C->>DB: INSERT INTO personal_access_tokens (jeton Sanctum)
+        C-->>R: 200 OK {user, token}
+        R->>R: Enregistre le jeton (localStorage si « Se souvenir de moi », sinon sessionStorage)
+        R-->>A: Redirection vers le tableau de bord
+    else Identifiants incorrects
+        C-->>R: 422 « Email ou mot de passe incorrect. »
+        R-->>A: Affiche le message sous le champ
+    end
+    deactivate C

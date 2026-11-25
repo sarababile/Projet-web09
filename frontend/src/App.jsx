@@ -5,6 +5,7 @@ import EnConstruction from './pages/EnConstruction';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Parcelles from './pages/Parcelles';
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
       <Route element={<PrivateRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/parcelles" element={<EnConstruction titre="Parcelles" />} />
+          <Route path="/parcelles" element={<Parcelles />} />
           <Route path="/cultures" element={<EnConstruction titre="Cultures" />} />
           <Route path="/intrants" element={<EnConstruction titre="Intrants" />} />
           <Route path="/recoltes" element={<EnConstruction titre="Récoltes" />} />

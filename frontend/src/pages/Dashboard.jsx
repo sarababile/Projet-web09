@@ -49,7 +49,7 @@ export default function Dashboard() {
           <input id="recherche" type="search" placeholder="Rechercher une parcelle…"
             value={recherche} onChange={(e) => setRecherche(e.target.value)} />
         </form>
-        <Link to="/recoltes" className="btn btn-primary">
+        <Link to="/recoltes?nouveau=1" className="btn btn-primary">
           <Plus size={18} strokeWidth={2.2} aria-hidden="true" /> Nouvelle récolte
         </Link>
       </header>

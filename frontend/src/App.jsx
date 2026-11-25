@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Parcelles from './pages/Parcelles';
 import Cultures from './pages/Cultures';
 import Intrants from './pages/Intrants';
+import Recoltes from './pages/Recoltes';
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
           <Route path="/parcelles" element={<Parcelles />} />
           <Route path="/cultures" element={<Cultures />} />
           <Route path="/intrants" element={<Intrants />} />
-          <Route path="/recoltes" element={<EnConstruction titre="Récoltes" />} />
+          <Route path="/recoltes" element={<Recoltes />} />
           <Route path="/rendements" element={<EnConstruction titre="Rendements" />} />
         </Route>
       </Route>

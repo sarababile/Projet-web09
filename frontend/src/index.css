@@ -307,3 +307,9 @@
 }
 .chip[aria-pressed='true'] { background: var(--pine); color: #fff; }
 .row-actions { display: flex; gap: 6px; justify-content: flex-end; }
+/* ---------- Aperçu du rendement (formulaire de récolte) ---------- */
+.apercu {
+  display: flex; flex-direction: column; gap: 2px; padding: 16px 18px;
+  border-radius: var(--radius-sm); background: var(--pistachio); color: var(--emerald); font-size: 14px; font-weight: 600;
+}
+.apercu strong { font-size: 30px; color: var(--forest); }
